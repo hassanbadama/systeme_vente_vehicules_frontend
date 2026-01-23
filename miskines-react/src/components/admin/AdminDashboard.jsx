@@ -97,7 +97,7 @@ const AdminDashboard = () => {
     // .catch(err => console.error(err));
   };
 
-  // ================= DELETE =================
+  // ================= DELETE  =================
   const handleDelete = () => {
     axios.delete(`http://localhost:8080/api/client/${selectedUser.id}`)
       .then(() => {
@@ -226,7 +226,7 @@ const AdminDashboard = () => {
 
                 {/* <select className="form-control mb-2"
                   value={role} onChange={e => setRole(e.target.value)} required>
-                  <option value="">-- Rôle --</option>
+                  <option value="">-- Rôle -- </option>
                   <option value="ADMIN">Admin</option>
                   <option value="USER">Client</option>
                   <option value="MANAGER">Coiffeur</option>
