@@ -39,6 +39,7 @@ function App() {
            <Link to="/admin">Administrateurs</Link>
            <Link to="/vehicule">Vehicules</Link>
            <Link to="/command">Commandes</Link>
+           <Link to="/deconnecter">Deconnecter</Link>
           </ul>
           <div className="menu-toggle">
             <span></span><span></span><span></span>
@@ -50,7 +51,7 @@ function App() {
       </nav>
       return 
       <Routes>
-      <Route path="/" element={<Utilisateur />} />
+      <Route path="/deconnecter" element={<Utilisateur />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/vehicule" element={<AdminVehicules />} />
         <Route path="/command" element={<AdminCommande />} />

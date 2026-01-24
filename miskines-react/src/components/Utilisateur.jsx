@@ -4,6 +4,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 
 import Swal from "sweetalert2";
@@ -35,6 +36,7 @@ function App() {
   // const [id, setId] = useState("");
   const [nom, setNom] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
 
   // ================= LOAD USERS =================
@@ -56,7 +58,7 @@ function App() {
   };
 
   // ================= ADD =================
-  const handleAdd = (e) => {
+  const handleAddconnecter = (e) => {
     e.preventDefault();
 
     axios.post("http://localhost:8080/api/client/connecter", {
@@ -66,6 +68,7 @@ function App() {
       
       console.log("retourner biens sans erreur")
       console.log(res.data)
+      navigate("/admin");
           
       // setShow(false);
       // Swal.fire("User", " connecter avec succés ", "");
@@ -560,7 +563,7 @@ const validerCommande = async () => {
           <div className="modal-content">
            Connecter
 
-          <form onSubmit={handleAdd}>
+          <form onSubmit={handleAddconnecter}>
               <div className="modal-body">
                 <input className="form-control mb-2" placeholder="Nom"
                   value={nom} onChange={e => setNom(e.target.value)} required />
