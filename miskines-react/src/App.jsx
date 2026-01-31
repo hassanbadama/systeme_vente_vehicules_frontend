@@ -49,7 +49,7 @@ function App() {
         
         {/* <Link to="/">Accueil</Link> |<Link to="/command">Command</Link> | <Link to="/about">Models de coiffures</Link> | <Link to="/contact">Utilisateur</Link> */}
       </nav>
-      return 
+      return  
       <Routes>
       <Route path="/deconnecter" element={<Utilisateur />} />
         <Route path="/admin" element={<AdminDashboard />} />

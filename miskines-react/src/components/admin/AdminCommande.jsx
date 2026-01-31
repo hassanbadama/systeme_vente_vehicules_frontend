@@ -3,14 +3,16 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-import {afficheCommand, afficheCommandes,getModels, addModel, deleteModel } from "../service/modelService";
+import {afficheCommand, afficheCommandes,getModels, addModel, etatModel } from "../service/modelService";
 
 
 const AdminCommande = () => {
   const [commandeuniques, setCommandeuniques] = useState([]);
   const [show, setShow] = useState(false);
   const [command, setCommand] = useState([]);
+  const navigate = useNavigate();
 
 //   useEffect(() => {
 //     axios.get("http://localhost:8080/api/catalogue/liste") // ton API Spring Boot
@@ -26,20 +28,12 @@ const AdminCommande = () => {
     const res = await afficheCommandes();
     console.log("valeur recurer hassane")
     console.log(res.data)
-    setCommand(res.data);
+   // setCommand(res.data);
+    setCommandeuniques(res.data);
   };
 
 
-  // useEffect(() => {
-  //   commandunique();
-  // }, []);
 
-  // const commandunique = async () => {
-  //   const res = await afficheCommand();
-  //   console.log("--valeur recurer hassane commandunique---")
-  //   console.log(res.data)
-  //   setCommandeunique(res.data);
-  // };
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/commandes") // ton API Spring Boot
@@ -51,23 +45,27 @@ const AdminCommande = () => {
      .catch(err => console.error(err));
  }, []);
 
- 
-
-
-  // useEffect(() => {
-  //   loadModel();
-  // }, []);
-
-  // const loadModel = async () => {
-  //   const res = await afficheCommande();
-  //   console.log("----valeur recurer commande----")
-  //   console.log(res.data)
-  //   setModels(res.data);
-  // };
-
-
+   const loadModels = async () => {
+     const res = await afficheCommandes();
+     console.log("valeur rechage--")
+     console.log(res.data)
+     setCommandeuniques(res.data);
+     
+   };
 
  
+
+
+
+
+  //changer etat
+
+    const handlegetCommande = async (id) => {
+      await etatModel(id);
+      loadModels()
+     // navigate("/command");
+      
+    };
 
 
   return (
@@ -118,10 +116,12 @@ const AdminCommande = () => {
             <th>Email</th>
             <th>Numero</th>
             <th>Dates Commande</th>
+            <th>Pays</th>
             <th>Etat</th>
             <th>Total</th>
             <th>Voir</th>
-
+            <th>Livrer</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -133,6 +133,7 @@ const AdminCommande = () => {
                 <td>{p.client?.email}</td>
                 <td>{p.client?.tel}</td>
                 <td>{p.dateCommande}</td>
+                <td>{p.client?.pays}</td>
                 <td>{p.etat}</td>
                 <td>{p.total} FCFA</td>
                 <td><button
@@ -143,6 +144,12 @@ const AdminCommande = () => {
                 >
                   + Detail
                 </button></td>
+
+                <td>     
+                  <Button onClick={() => handlegetCommande(p.id)} > Marquer Termine </Button>
+                </td>
+
+
               </tr>
           ))}
         </tbody>

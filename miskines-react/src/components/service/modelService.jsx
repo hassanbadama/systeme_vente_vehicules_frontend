@@ -35,6 +35,9 @@ export const addModel = (formData) =>
 //  Vérifie que cette fonction existe
 export const deleteModel = (id) =>
   axios.delete(`${API}/vehicules/${id}`);
+//rechercher
+export const etatModel = (id) =>
+  axios.get(`${API}/commandes/${id}`);
 
 
 

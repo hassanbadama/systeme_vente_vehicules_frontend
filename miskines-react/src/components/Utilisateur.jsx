@@ -182,7 +182,7 @@ const ajouterAuPanier = (vehicule) => {
 const validerCommande = async () => {
   const commandeDTO = {
     dateCommande: new Date().toISOString().split("T")[0],
-    etat: "EN_ATTENTE",
+    etat: form.paiement=="CREDIT"?"EN_ATTENTE":"EN_COURS",
     total: panier.reduce((s, v) => s + v.prix * v.quantite, 0),
 
     client: {
@@ -534,8 +534,8 @@ const validerCommande = async () => {
                       required
                     >
                       <option value="">Sélectionner pays</option>
-                      <option value="National">National</option>
-                      <option value="International">International</option>
+                      <option value="Tchad">Tchad</option>
+                      <option value="Cameroun">Cameroun</option>
                     </select>
 
                     <input
